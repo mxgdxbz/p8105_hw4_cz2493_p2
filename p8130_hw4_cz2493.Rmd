@@ -1,0 +1,10 @@
+---
+title: "P8130_hw4_cz2493"
+author: "CHUHAN"
+date: "10/25/2017"
+output: html_document
+---
+
+### problem2
+```{r}
+```
