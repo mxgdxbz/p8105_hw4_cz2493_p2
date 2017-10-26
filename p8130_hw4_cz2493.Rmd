@@ -6,6 +6,7 @@ output: html_document
 ---
 
 ### problem 2
+##Part 1
 ```{r}
 library(tidyverse)
 library(haven)
@@ -24,3 +25,15 @@ data_gdp = read_csv("../data/fivethirtyeight_datasets/GDP.csv") %>% clean_names(
 data_join = left_join(data_pols,data_gdp)
 
 ```
+
+##Part 2
+```{r}
+data_join %>% 
+  mutate(president = ifelse(prez_gop == 1, "gop","dem"),
+         value = as.numeric(value)) %>% 
+   select(., -prez_dem, -prez_gop) %>% 
+   filter(!is.na(value)) %>% 
+  ggplot(aes(x = date, y = value, color = president)) + 
+  geom_point(aes(color = president), alpha = .5)
+```
+
