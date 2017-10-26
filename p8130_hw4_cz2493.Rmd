@@ -5,6 +5,22 @@ date: "10/25/2017"
 output: html_document
 ---
 
-### problem2
+### problem 2
 ```{r}
+library(tidyverse)
+library(haven)
+library(readxl)
+library(janitor)
+library(dplyr)
+library(Hmisc)
+library(ggthemes)
+data_pols = read_csv("../data/fivethirtyeight_datasets/pols-month.csv") %>% 
+clean_names() %>%
+select(date = mon,everything()) 
+data_pols = mutate(data_pols,
+date = lubridate::floor_date(data_pols$date,"month"))
+
+data_gdp = read_csv("../data/fivethirtyeight_datasets/GDP.csv") %>% clean_names() 
+data_join = left_join(data_pols,data_gdp)
+
 ```
