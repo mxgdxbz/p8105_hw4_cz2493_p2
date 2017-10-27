@@ -34,6 +34,6 @@ data_join %>%
    select(., -prez_dem, -prez_gop) %>% 
    filter(!is.na(value)) %>% 
   ggplot(aes(x = date, y = value, color = president)) + 
-  geom_point(aes(color = president), alpha = .5)
+  geom_point(aes(color = president), alpha = .75)
 ```
 
