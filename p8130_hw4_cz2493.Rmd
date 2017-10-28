@@ -31,10 +31,15 @@ data_join = left_join(data_pols,data_gdp)
 ```{r,warning=FALSE}
 data_join %>% 
   mutate(president = ifelse(prez_gop == 1, "gop","dem"),
-         value = as.numeric(value)) %>% 
+         GDP = as.numeric(value)) %>% 
    select(., -prez_dem, -prez_gop) %>% 
    filter(!is.na(value)) %>% 
-  ggplot(aes(x = date, y = value, color = president)) + 
-  geom_point(aes(color = president), alpha = .75)
+  ggplot(aes(x = date, y = GDP, color = president)) + 
+  geom_point(aes(color = president), alpha = .75) + 
+    xlab("date") + ylab("GDP") +
+    scale_fill_hue(name = "President Party",
+                   labels = c("Democratic Party", "Republican Party")) +
+    ggtitle("The GDP value of each President Party") + 
+    theme_bw()
 ```
 
