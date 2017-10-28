@@ -7,13 +7,15 @@ output: html_document
 
 ### problem 2
 ##Part 1
-```{r,message=FALSE,warning= FALSE}
+```{r setup,message=FALSE,warning= FALSE,include=FALSE}
 library(tidyverse)
 library(haven)
 library(readxl)
 library(janitor)
 library(Hmisc)
 library(ggthemes)
+```
+```{r,message=FALSE}
 data_pols = read_csv("../data/fivethirtyeight_datasets/pols-month.csv") %>% 
 clean_names() %>%
 select(date = mon,everything()) 

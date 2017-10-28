@@ -129,13 +129,7 @@ $(document).ready(function () {
 </div>
 <div id="part-1" class="section level2">
 <h2>Part 1</h2>
-<pre class="r"><code>library(tidyverse)
-library(haven)
-library(readxl)
-library(janitor)
-library(Hmisc)
-library(ggthemes)
-data_pols = read_csv(&quot;../data/fivethirtyeight_datasets/pols-month.csv&quot;) %&gt;% 
+<pre class="r"><code>data_pols = read_csv(&quot;../data/fivethirtyeight_datasets/pols-month.csv&quot;) %&gt;% 
 clean_names() %&gt;%
 select(date = mon,everything()) 
 data_pols = mutate(data_pols,
