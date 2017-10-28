@@ -7,12 +7,11 @@ output: html_document
 
 ### problem 2
 ##Part 1
-```{r}
+```{r,message=FALSE,warning= FALSE}
 library(tidyverse)
 library(haven)
 library(readxl)
 library(janitor)
-library(dplyr)
 library(Hmisc)
 library(ggthemes)
 data_pols = read_csv("../data/fivethirtyeight_datasets/pols-month.csv") %>% 
@@ -27,7 +26,7 @@ data_join = left_join(data_pols,data_gdp)
 ```
 
 ##Part 2
-```{r}
+```{r,warning=FALSE}
 data_join %>% 
   mutate(president = ifelse(prez_gop == 1, "gop","dem"),
          value = as.numeric(value)) %>% 
