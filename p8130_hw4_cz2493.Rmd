@@ -2,10 +2,13 @@
 title: "P8130_hw4_cz2493"
 author: "CHUHAN"
 date: "10/25/2017"
-output: html_document
+output:
+  html_document: 
+    toc: true
+    toc_float: true
 ---
 
-### problem 2
+###Problem 2
 ##Part 1
 ```{r setup,message=FALSE,warning= FALSE,include=FALSE}
 library(tidyverse)
@@ -15,7 +18,8 @@ library(janitor)
 library(Hmisc)
 library(ggthemes)
 ```
-```{r,message=FALSE}
+
+```{r, tidy data, message=FALSE}
 data_pols = read_csv("../data/fivethirtyeight_datasets/pols-month.csv") %>% 
 clean_names() %>%
 select(date = mon,everything()) 
@@ -28,17 +32,13 @@ data_join = left_join(data_pols,data_gdp)
 ```
 
 ##Part 2
-```{r,warning=FALSE}
+```{r, plot, warning=FALSE}
 data_join %>% 
   mutate(president = ifelse(prez_gop == 1, "gop","dem"),
-         GDP = as.numeric(value)) %>% 
+         GDP = as.numeric(value, na.rm = TRUE)) %>% 
    select(., -prez_dem, -prez_gop) %>% 
-   filter(!is.na(value)) %>% 
   ggplot(aes(x = date, y = GDP, color = president)) + 
   geom_point(aes(color = president), alpha = .75) + 
-    xlab("date") + ylab("GDP") +
-    scale_fill_hue(name = "President Party",
-                   labels = c("Democratic Party", "Republican Party")) +
     ggtitle("The GDP value of each President Party") + 
     theme_bw()
 ```
