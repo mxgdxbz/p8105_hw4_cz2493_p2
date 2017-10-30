@@ -19,6 +19,7 @@ library(Hmisc)
 library(ggthemes)
 ```
 
+We load and tidy data and then combine two datasets based on the variable date
 ```{r, tidy data, message=FALSE}
 data_pols = read_csv("../data/fivethirtyeight_datasets/pols-month.csv") %>% 
 clean_names() %>%
@@ -32,6 +33,7 @@ data_join = left_join(data_pols,data_gdp)
 ```
 
 ##Part 2
+We create a plot showing the GDP value over time
 ```{r, plot, warning=FALSE}
 data_join %>% 
   mutate(president = ifelse(prez_gop == 1, "gop","dem"),
@@ -42,4 +44,7 @@ data_join %>%
     ggtitle("The GDP value of each President Party") + 
     theme_bw()
 ```
+
+Comments:
+Through this point plot, we could observe the GDP value over time, from 1948 to 2015. The plot also includes the information of which party is in charge. The highest GDP occurred with the democratic president. Also, we could not make any conclusion that the GDP value has any association with the present party.
 
